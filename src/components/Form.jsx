@@ -2,7 +2,10 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import Alert from "./Alert";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Forms = () => {
+  const navigate = useNavigate();
   const clientSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "The name must be more than 3 charcteres")
@@ -13,8 +16,15 @@ const Forms = () => {
     phone: Yup.number().integer("No Valid Number").positive("No Valid Number"),
     notes: Yup.string(),
   });
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    try {
+      const url = "http://localhost:4000/clients";
+      await axios.post(url, values);
+
+      navigate("/clients");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto">
@@ -29,7 +39,10 @@ const Forms = () => {
           phone: "",
           notes: "",
         }}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={async (values, { resetForm }) => {
+          await handleSubmit(values);
+          resetForm();
+        }}
         validationSchema={clientSchema}
       >
         {({ errors, touched }) => {

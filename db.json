@@ -1,0 +1,52 @@
+{
+  "clients": [
+    {
+      "name": "Tomas",
+      "company": "Freelancer",
+      "email": "tomipatlayan@gmail.com",
+      "phone": "0542570348",
+      "notes": "Pepe notas ",
+      "id": 2
+    },
+    {
+      "name": "Tomas",
+      "company": "Freelancer",
+      "email": "tomipatlayan@gmail.com",
+      "phone": "0542570348",
+      "notes": " ",
+      "id": 3
+    },
+    {
+      "name": "Tomas",
+      "company": "Freelancer",
+      "email": "carlos@gmail.com",
+      "phone": "0542570348",
+      "notes": " ",
+      "id": 4
+    },
+    {
+      "name": "Tomas Leon Patlayan",
+      "company": "PEPE Company",
+      "email": "admin@admin.com",
+      "phone": "0542570348",
+      "notes": " NOtas The la pepe",
+      "id": 5
+    },
+    {
+      "name": "Tomas Leon Patlayan",
+      "company": "PEPE Company",
+      "email": "admin@admin.com",
+      "phone": "0542570348",
+      "notes": " NOtas The la pepe",
+      "id": 6
+    },
+    {
+      "name": "Carlin",
+      "company": "Carlin",
+      "email": "carlin@gmail.com",
+      "phone": "0542570348",
+      "notes": "23\n2\n32\n323\n",
+      "id": 7
+    }
+  ]
+}
