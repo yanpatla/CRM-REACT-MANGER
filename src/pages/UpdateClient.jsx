@@ -1,11 +1,36 @@
-import React from 'react'
-
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Forms from "../components/Form";
 const UpdateClient = () => {
-    return (
-        <div>
-            Upadte Client
-        </div>
-    )
-}
+  const [client, setClient] = useState({});
 
-export default UpdateClient
+  const [loading, setloading] = useState(true);
+  console.log(loading);
+  const params = useParams();
+  const { id } = params;
+  useEffect(() => {
+    const getClientByID = async () => {
+      try {
+        const url = `http://localhost:4000/clients/${id}`;
+        const res = await axios.get(url);
+        setClient(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+      setloading(!loading);
+    };
+    getClientByID();
+  }, []);
+  return (
+    <>
+      <h1 className="font-black text-4xl text-blue-900">Update Client</h1>
+
+      <p className="mt-3">Fill the Inputs for Update the Client</p>
+
+      <Forms client={client} />
+    </>
+  );
+};
+
+export default UpdateClient;

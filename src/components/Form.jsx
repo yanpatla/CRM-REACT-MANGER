@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import Alert from "./Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const Forms = () => {
+const Forms = ({ client }) => {
   const navigate = useNavigate();
   const clientSchema = Yup.object().shape({
     name: Yup.string()
@@ -33,12 +33,13 @@ const Forms = () => {
       </h1>
       <Formik
         initialValues={{
-          name: "",
-          company: "",
-          email: "",
-          phone: "",
-          notes: "",
+          name: client?.name ?? "", //* Traduccion: SI marca como undefined agrega lo otro
+          company: client?.company ?? "",
+          email: client?.email ?? "",
+          phone: client?.phone ?? "",
+          notes: client?.notes ?? "",
         }}
+        enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
           await handleSubmit(values);
           resetForm();
@@ -124,6 +125,10 @@ const Forms = () => {
       </Formik>
     </div>
   );
+};
+
+Forms.defaultProps = {
+  client: {},
 };
 
 export default Forms;
