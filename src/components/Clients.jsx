@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import Spinner from "./Spinner";
 
-const Clients = ({ client }) => {
+const Clients = ({ client, loading }) => {
   const navigate = useNavigate();
   const { name, company, email, phone, note, id } = client;
   return (

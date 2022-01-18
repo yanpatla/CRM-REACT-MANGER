@@ -4,7 +4,8 @@ import * as Yup from "yup";
 import Alert from "./Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const Forms = ({ client }) => {
+import Spinner from "./Spinner";
+const Forms = ({ client,loading }) => {
   const navigate = useNavigate();
   const clientSchema = Yup.object().shape({
     name: Yup.string()
@@ -26,14 +27,16 @@ const Forms = ({ client }) => {
       console.log(error);
     }
   };
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto">
       <h1 className="text-gray-500 font-bold text-xl uppercase text-center">
-        Add Client
+        {client?.name ? "Edit Client" : "Add Client"}
       </h1>
       <Formik
         initialValues={{
-          name: client?.name ?? "", //* Traduccion: SI marca como undefined agrega lo otro
+          name: client?.name ?? "", //* Traduccion: SI marca como undefined agrega lo otro SE LLAMA NULLISH COALEASING OPERATOR
           company: client?.company ?? "",
           email: client?.email ?? "",
           phone: client?.phone ?? "",
@@ -116,7 +119,7 @@ const Forms = ({ client }) => {
 
               <input
                 type="submit"
-                value="Add Client"
+                value={client?.name ? "Edit Client" : "Add Client"}
                 className="mt-5 w-full  bg-blue-800 p-3 text-white uppercase font-bold text-lg"
               />
             </Form>

@@ -28,7 +28,7 @@ const UpdateClient = () => {
 
       <p className="mt-3">Fill the Inputs for Update the Client</p>
 
-      <Forms client={client} />
+      <Forms client={client} loading={loading} />
     </>
   );
 };
